@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './ItemsContainer.css'
 
 export const Items = ({items}) => {
 
