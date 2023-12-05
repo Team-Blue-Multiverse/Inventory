@@ -23,13 +23,14 @@ export const Items = () => {
   return (
     <div className='items-card'>
      {items.map((item) => (
+      <>
         <div key={item.id}>
 					<Link to={`${item.id}`}><h3>{item.name}</h3></Link>
           <h3>{item.price}</h3>
           </div>
+          <hr />
+        </>
 				))}
     </div>
   )
 } 
-
-	
