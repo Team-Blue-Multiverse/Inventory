@@ -65,7 +65,7 @@ export const Items = () => {
               </div>
 
               <button
-                onClick={() => handleDeleteItem(item.id)}
+                onClick={() => DeleteItem(item.id)}
                 className='mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-red-600'>
                 Delete
               </button>
