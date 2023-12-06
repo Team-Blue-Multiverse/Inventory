@@ -17,17 +17,23 @@
     "morgan": "1.10.0",
     "nodemon": "^2.0.19",
     "parcel": "^2.8.3",
+    "postcss": "^8.4.32",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.12.0",
     "react-router-dom": "^6.20.1",
     "react-test-renderer": "^18.2.0",
     "sequelize": "^6.23.2",
     "sqlite3": "^5.1.1"
   },
   "devDependencies": {
-    "@testing-library/react": "^12.0.0",
+    "@testing-library/react": "^14.0.0",
     "babel-jest": "^27.1.0",
     "jest": "^27.1.0",
-    "process": "^0.11.10"
+    "prettier": "^3.1.0",
+    "prettier-plugin-tailwindcss": "^0.5.9",
+    "process": "^0.11.10",
+    "supertest": "^6.3.3",
+    "tailwindcss": "^3.3.5"
   }
 }
