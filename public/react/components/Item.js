@@ -81,16 +81,15 @@ export const ItemContainer = () => {
                     </button>
                 </div>
             </div>
+            {/* Show more the same */}
+            <div className="mt-20 px-4 py-16">
+                <div className="text-center">More the same</div>
+                <div>
+                    <SameCategory categoryCheck={item.category} />
+                </div>
+            </div>
         </div>
-      </div>
-
-      {/* Show more the same */}
-      <div className="mt-20 px-4 py-16">
-        <div className="text-center">More the same</div>
-        <div>
-          <SameCategory categoryCheck={item.category} />
-        </div>
-      </div>
     </div>
-  );
-};
+    );
+  };
+
