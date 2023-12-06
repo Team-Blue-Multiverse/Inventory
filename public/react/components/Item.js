@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate} from 'react-router-dom'
 import apiURL from '../api';
+
+
 
 export const ItemContainer = () => {
     let { id } = useParams()
     const [item, setItem] = useState([])
-
+    const navigate= useNavigate()
     const fetchItem = async()=>{
         try {
             const res = await fetch(`${apiURL}/items/${id}`)
@@ -20,6 +22,27 @@ export const ItemContainer = () => {
         fetchItem()
     }, [])
 
+    const handleClick= () => {
+        DeleteItem(item.id)
+        navigate('/items')
+    }
+
+
+    const DeleteItem = async (Id) => {
+        try {
+          const res = await fetch(`${apiURL}/items/${Id}`, {
+            method: 'DELETE',
+          });
+            setItem(item.filter((item) => item.id !== Id));
+            console.log('Item deleted !');
+        
+            //console.log('Unable to delete item');
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      
   return (
     <div className=''>
         <div className='mx-auto px-4 sm:px-6 sm:py-24 lg:max-w-5xl lg:px-10 sm:max-w-full flex flex-col'>
@@ -36,13 +59,23 @@ export const ItemContainer = () => {
                     <p className='mt-12'>{item.description}</p>
                 </div>
             </div>
+            <div className='ml-auto'>
 
+                <button
+                onClick={handleClick}
+                className='mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-red-600'>
+                
+                Delete
+                </button>
+        </div>
         </div>
 
         {/* Show more the same */}
         <div className='mt-20 px-4 py-16'>
             <div className='text-center'>More the same</div>
         </div>
+
+        
     </div>
   )
 } 
