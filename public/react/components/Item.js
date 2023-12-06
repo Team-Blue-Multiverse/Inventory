@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate} from 'react-router-dom'
 import apiURL from '../api';
+import { Link } from 'react-router-dom'
+import { UpdateItem } from './UpdateItem'
 
 
 
@@ -9,6 +11,7 @@ export const ItemContainer = () => {
     const [item, setItem] = useState([])
     const navigate= useNavigate()
     const fetchItem = async()=>{
+
         try {
             const res = await fetch(`${apiURL}/items/${id}`)
             const data = await res.json()
@@ -18,7 +21,7 @@ export const ItemContainer = () => {
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchItem()
     }, [])
 
@@ -70,9 +73,11 @@ export const ItemContainer = () => {
         </div>
         </div>
 
-        {/* Show more the same */}
-        <div className='mt-20 px-4 py-16'>
-            <div className='text-center'>More the same</div>
+
+            {/* Show more the same */}
+            <div className='mt-20 px-4 py-16'>
+                <div className='text-center'>More the same</div>
+            </div>
         </div>
 
         
@@ -80,3 +85,4 @@ export const ItemContainer = () => {
   )
 } 
 	
+
