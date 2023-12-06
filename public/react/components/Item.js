@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import apiURL from '../api';
+import { SameCategory } from './SameCategory';
 
 export const ItemContainer = () => {
     let { id } = useParams()
@@ -32,6 +33,7 @@ export const ItemContainer = () => {
                 {/* description page */}
                 <div className='flex flex-col ml-20'>
                     <h2 className='font-bold text-xl mb-1'>{item.name}</h2>
+                    <h4 className='font-bold text-xl mb-1'>{item.category}</h4>
                     <hr />
                     <p className='mt-12'>{item.description}</p>
                 </div>
@@ -42,6 +44,9 @@ export const ItemContainer = () => {
         {/* Show more the same */}
         <div className='mt-20 px-4 py-16'>
             <div className='text-center'>More the same</div>
+            <div>
+                <SameCategory categoryCheck={item.category} />
+            </div>
         </div>
     </div>
   )
