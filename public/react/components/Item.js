@@ -76,7 +76,6 @@ export const ItemContainer = () => {
                 <div className='ml-auto'>
                     <button className='mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-red-600'>
                         <Link to={`/updateItem/${item.id}`}> Update</Link>
-
                     </button>
                 </div>
             </div>
