@@ -1,51 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate} from 'react-router-dom'
-import apiURL from '../api';
-import { Link } from 'react-router-dom'
-import { UpdateItem } from './UpdateItem'
-import { SameCategory } from './SameCategory';
-
-
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate, redirect } from "react-router-dom";
+import apiURL from "../api";
+import { Link } from "react-router-dom";
+import { UpdateItem } from "./UpdateItem";
+import { SameCategory } from "./SameCategory";
 
 export const ItemContainer = () => {
-    let { id } = useParams()
-    const [item, setItem] = useState([])
-    const navigate= useNavigate()
-    const fetchItem = async()=>{
-
-        try {
-            const res = await fetch(`${apiURL}/items/${id}`)
-            const data = await res.json()
-            setItem(data)
-        } catch (error) {
-            console.log(error)
-        }
+  let { id } = useParams();
+  const [item, setItem] = useState([]);
+  const navigate = useNavigate();
+  const fetchItem = async () => {
+    try {
+      const res = await fetch(`${apiURL}/items/${id}`);
+      const data = await res.json();
+      setItem(data);
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    useEffect(() => {
-        fetchItem()
-    }, [])
+  useEffect(() => {
+    fetchItem();
+  }, []);
 
-    const handleClick = () => {
-        DeleteItem(item.id)
-        navigate('/items')
+  const handleClick = async () => {
+    await DeleteItem(item.id);
+    navigate("/items");
+  };
+
+  const DeleteItem = async (Id) => {
+    try {
+      const res = await fetch(`${apiURL}/items/${Id}`, {
+        method: "DELETE",
+      });
+      //   setItem(item.filter((item) => item.id !== Id));
+      fetchItem();
+      console.log("Item deleted !");
+      //console.log('Unable to delete item');
+    } catch (error) {
+      console.log(error);
     }
+  };
 
 
-    const DeleteItem = async (id) => {
-        try {
-          const res = await fetch(`${apiURL}/items/${id}`, {
-            method: 'DELETE',
-          });
-            setItem(item.filter((item) => item.id !== id));
-            console.log('Item deleted !')
-        } catch (error) {
-          console.log(error);
-        }
-      };
-
-      
   return (
+
     <div className=''>
         <div className='mx-auto px-4 sm:px-6 sm:py-24 lg:max-w-5xl lg:px-10 sm:max-w-full flex flex-col'>
             {/* container-item */}
@@ -83,17 +82,15 @@ export const ItemContainer = () => {
                 </div>
             </div>
         </div>
+      </div>
 
-
-            {/* Show more the same */}
-            <div className='mt-20 px-4 py-16'>
-                <div className='text-center'>More the same</div>
-                <div>
-                    <SameCategory categoryCheck={item.category}/>
-                </div>
-            </div>
+      {/* Show more the same */}
+      <div className="mt-20 px-4 py-16">
+        <div className="text-center">More the same</div>
+        <div>
+          <SameCategory categoryCheck={item.category} />
         </div>
-  )
-} 
-	
-
+      </div>
+    </div>
+  );
+};
