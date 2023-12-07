@@ -31,10 +31,11 @@ export const UpdateItem = () => {
     useEffect(() => {
         fetchItem()
     }, [])
-
-
+    
+      
     const handleSubmit = async (e) => {
         e.preventDefault()
+        
         try {
             const res = await fetch(`${apiURL}/items/${id}`, {
                 method: "PUT",
@@ -48,11 +49,13 @@ export const UpdateItem = () => {
                     category,
                     image,
                 })
+                
             })
             navigate(`/items/${id}`)
         } catch (error) {
             console.log(error)
         }
+        navigate("/items");
     }
 
     return (

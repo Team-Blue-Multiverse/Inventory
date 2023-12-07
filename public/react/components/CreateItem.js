@@ -1,14 +1,19 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import apiURL from "../api";
 import { Link } from 'react-router-dom'
 
+<link rel="stylesheet" href="../../style.css" />
+
 export const CreateItem = () => {
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
   const [image, setImage] = useState("");
+  
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -40,6 +45,8 @@ export const CreateItem = () => {
       console.log(error);
     }
   };
+
+
 
   return (
     <>
