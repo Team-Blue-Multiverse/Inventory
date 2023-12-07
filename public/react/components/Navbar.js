@@ -7,7 +7,7 @@ export const Navbar = () => {
     return (
       <nav className="flex items-center justify-between flex-wrap p-10">
         <div className="flex items-center flex-shrink-0 text-white mr-6 lg:mr-72">
-          <Link to='/Home'><h1 className="w-full text-3xl font-medium text-blue-500">Team Blue.</h1></Link>
+          <Link to='/'><h1 className="w-full text-3xl font-medium text-blue-500">Team Blue.</h1></Link>
         </div>
         <div className="block lg:hidden">
           <button
