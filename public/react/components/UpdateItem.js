@@ -30,10 +30,11 @@ export const UpdateItem = () => {
     useEffect(() => {
         fetchItem()
     }, [])
-
-
+    
+      
     const handleSubmit = async (e) => {
         e.preventDefault()
+        
         try {
             const res = await fetch(`${apiURL}/items/${id}`, {
                 method: "PUT",
@@ -47,10 +48,12 @@ export const UpdateItem = () => {
                     category,
                     image,
                 })
+                
             })
         } catch (error) {
             console.log(error)
         }
+        navigate("/items");
     }
 
     return (
@@ -73,7 +76,7 @@ export const UpdateItem = () => {
                     <label className="image">Image:
                         <input type="text" placeholder='image' value={image} onChange={(e) => setImage(e.target.value)} />
                     </label>
-                    <button type="submit"> Submit </button>
+                    { <button /*onClick={handleClick}*/ type="submit"> Submit </button> }
 
                 </form>
             </div>
