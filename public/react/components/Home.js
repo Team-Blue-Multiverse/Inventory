@@ -3,11 +3,8 @@ import { Link } from 'react-router-dom'
 
 export const Home = () => {
   return (
-    <div>
-        <h1>Welcome to team Blue</h1>
-        <h1 className="text-5xl underline">
-            This is Tailwind
-        </h1>
+    <div className='mx-auto px-4 sm:px-6 sm:py-24 lg:max-w-5xl lg:px-10 sm:max-w-full flex flex-col'>
+        <h1 className='text-xl'>Welcome to team Blue</h1>
         <div>
             <Link to='/items'>Go to Items Available</Link>
             <hr />
