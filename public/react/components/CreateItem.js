@@ -1,3 +1,4 @@
+
 import React, {useState,useEffect} from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import apiURL from '../api';
@@ -10,7 +11,9 @@ const [description, setDescription]= useState('')
 const [price, setPrice] = useState (0)
 const [category, setCategory] = useState('')
 const [image, setImage] = useState ('')
+
 const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -34,8 +37,9 @@ const navigate = useNavigate();
                 setDescription('')
                 setPrice(0)
                 setCategory('')
-                setImage('')
+                setImage('')  
             }
+            navigate('/items')
 		} catch (error) {
 			console.log(error)
 		}
