@@ -60,7 +60,7 @@ const navigate = useNavigate();
     </label>
     <label className="input-label">Price:
     <br/>
-        <input className="input field" type="float" placeholder='Price' value={price} onChange={(e) => setPrice(e.target.value)} />
+        <input className="input field" type="number" placeholder='Price' value={price} onChange={(e) => setPrice(e.target.value)} />
     </label>
     <label className="input-label">Category:
     <br/>
