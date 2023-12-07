@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import apiURL from '../api'
+import { Carousel } from './Carousel'
+
 
 export const SameCategory = ({categoryCheck}) => { 
     const [items, setItems] = useState([])
@@ -18,19 +20,22 @@ export const SameCategory = ({categoryCheck}) => {
         fetchItems()
     }, []);
 
+    let arr = []
+    let arr2 = [1]
+    {items.map((item) => {
+        if(item.category === categoryCheck){
+            arr.push(item)
+        }
+    })}
+
     return(
        <>
-        {items.map((item) => {
-            // if(item.id === idCheck) 0 
-            if(item.category === categoryCheck){
+        {arr2.map((item) => {
                 return (
                     <div key={item.id}>
-                        <p>{item.name}</p>
-                        <p>{item.category}</p>
-                        <hr />
+                        <Carousel items={arr} />
                     </div>
-                )
-            }
+                  );
         })}
        </> 
     )
