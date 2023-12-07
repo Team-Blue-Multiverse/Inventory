@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link} from "react-router-dom";
 import apiURL from "../api";
 import { UpdateItem } from "./UpdateItem";
-import { SameCategory } from "./SameCategory";
+import { Carousel } from "./Carousel";
 
 export const ItemContainer = () => {
   let { id } = useParams();
@@ -85,7 +85,7 @@ export const ItemContainer = () => {
             <div className="mt-20 px-4 py-16">
                 <div className="text-center">More the same</div>
                 <div>
-                    <SameCategory categoryCheck={item.category} />
+                    <Carousel categoryCheck={item.category} />
                 </div>
             </div>
         </div>

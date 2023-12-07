@@ -1,11 +1,30 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import apiURL from "../api";
 
-export const Carousel = ({items}) => {
-  const maxScrollWidth = useRef(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const carousel = useRef(null);
+export const Carousel = ({categoryCheck}) => {
+    const [items, setItems] = useState([])
 
+    
+    const maxScrollWidth = useRef(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const carousel = useRef(null);
+    
+    const fetchItems = async()=>{
+        try {
+            const res = await fetch(`${apiURL}/items`)
+            const data = await res.json()
+            setItems(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        fetchItems()
+    }, []);
+
+  //? Carousel Logic
   const movePrev = () => {
     if (currentIndex > 0) {
       setCurrentIndex((prevState) => prevState - 1);
@@ -98,34 +117,36 @@ export const Carousel = ({items}) => {
           ref={carousel}
           className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
         >
-          {items.map((item) => {
-            return ( 
-              <div
-                key={item.id}
-                className="carousel-item text-center relative w-64 h-64 snap-start"
-              >
-                <Link to={`/items/${item.id}`}
-                  className="h-full w-full aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
-                  style={{ backgroundImage: `url(${item.image || ''})` }}
+        {items.map((item) => {
+            if(item.category === categoryCheck){
+                return ( 
+                <div
+                    key={item.id}
+                    className="carousel-item text-center relative w-64 h-64 snap-start"
                 >
-                  <img
-                    src={item.image || ''}
-                    alt={item.name}
-                    className="w-full aspect-square hidden"
-                  />
-                </Link>
-                <Link to={`/items/${item.id}`}
-                  className="h-full w-full aspect-square block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-blue-500/75 z-10"
-                >
-                  <h3 className="text-white py-6 px-3 mx-auto text-xl">
-                    {item.name}
-                  </h3>
-                  <h4 className="text-white py-6 px-3 mx-auto text-xl">
-                    ${item.price}
-                  </h4>
-                </Link>
-              </div>
-            ); 
+                    <Link to={`/items/${item.id}`}
+                    className="h-full w-full aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
+                    style={{ backgroundImage: `url(${item.image || ''})` }}
+                    >
+                    <img
+                        src={item.image || ''}
+                        alt={item.name}
+                        className="w-full aspect-square hidden"
+                    />
+                    </Link>
+                    <Link to={`/items/${item.id}`}
+                    className="h-full w-full aspect-square block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-blue-500/75 z-10"
+                    >
+                    <h3 className="text-white py-6 px-3 mx-auto text-xl">
+                        {item.name}
+                    </h3>
+                    <h4 className="text-white py-6 px-3 mx-auto text-xl">
+                        ${item.price}
+                    </h4>
+                    </Link>
+                </div>
+                ); 
+            }
           })} 
         </div>
       </div>
