@@ -39,11 +39,9 @@ const navigate = useNavigate();
 		} catch (error) {
 			console.log(error)
 		}
+        navigate("/items");
 	}
 
-    const handleClick = async () => {
-        navigate("/items");
-      };
 
   return (
    <>
@@ -72,7 +70,7 @@ const navigate = useNavigate();
     <br/>
         <input className="input field" type="text" placeholder='image' value={image} onChange={(e) => setImage(e.target.value)} />
     </label>
-    <button onClick={handleClick} className="submit-button" type="submit"> Submit </button>
+    <button  className="submit-button" type="submit"> Submit </button>
     </form>
    </div>
    </>
