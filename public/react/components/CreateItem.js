@@ -38,7 +38,7 @@ export const CreateItem = () => {
         setCategory("");
         setImage("");
       }
-      navigate("/items");
+      navigate('/items');
     } catch (error) {
       console.log(error);
     }
